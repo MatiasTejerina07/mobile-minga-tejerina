@@ -6,7 +6,7 @@ export default function Hero() {
     return (
 
         <View style={styles.container}>
-            <Text>Hola aca estoy Gato!!</Text>
+            <Text>Hola aca estoy!!</Text>
         </View>
 
     )
