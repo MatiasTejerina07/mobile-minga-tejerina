@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import 'react-native-gesture-handler'
-
+import BottomTabsNavigator from './src/navigation/BottomTabsNavigator';
 //PAGES//
 import Home from './src/pages/Home'
 import Manga from './src/pages/Manga';
@@ -13,7 +13,8 @@ const Navbar = createDrawerNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <Navbar.Navigator
+      <BottomTabsNavigator/>
+      {/* <Navbar.Navigator
         screenOptions={{
           drawerStyle: {
             backgroundColor: '#FF5722',
@@ -27,7 +28,7 @@ export default function App() {
         <Navbar.Screen name="Manga" component={Manga} />
         <Navbar.Screen name="Register" component={Register} />
         <Navbar.Screen name="Chapters" component={Chapters} />
-      </Navbar.Navigator>
+      </Navbar.Navigator> */}
     </NavigationContainer>
   );
 }
