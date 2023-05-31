@@ -1,4 +1,5 @@
 //todo utils
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export function parseError({ error }) {
     let newError = {}
     let pathArray = []
@@ -43,5 +44,36 @@ export function parsePagesArray(numberOfPages) {
         return pages;
     }
     return [1];
+}
+export const _storeData = async ({ key, value }) => {
+    try {
+        value = JSON.stringify(value)
+        await AsyncStorage.setItem(
+            key,
+            value,
+        );
+    } catch (error) {
+        // Error saving data
+        console.log(error)
+    }
+};
+
+export const _retrieveData = async ({ key }) => {
+    try {
+        let value = await AsyncStorage.getItem(key);
+        value = JSON.parse(value);
+        return value
+    } catch (error) {
+        console.log(error)
+    }
+
+};
+export const _removeData = async ({ key }) => {
+    try {
+        await AsyncStorage.removeItem(key);
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 

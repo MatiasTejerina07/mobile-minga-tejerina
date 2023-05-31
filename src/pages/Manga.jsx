@@ -14,7 +14,7 @@ export default function Manga() {
             </View>
             <View className='w-full flex justify-center items-center'>
                 <View className='bg-[#EBEBEB] flex justify-center items-center w-[87%] h-56  rounded-t-3xl'>
-                    <TouchableOpacity className="w-5/6 h-5/6 flex flex-row  shadow rounded-lg justify-between items-center lg:w-1/3 overflow-hidden">
+                    <TouchableOpacity className="w-5/6 h-5/6 flex flex-row bg-white shadow rounded-lg justify-between items-center lg:w-1/3 overflow-hidden">
                         <View className="border-l-4 h-2/3" /* style={{ borderColor: manga?.category_id?.color }} */></View>
                         <View className="flex flex-col items-start justify-center h-full grow p-4">
                             <View>
