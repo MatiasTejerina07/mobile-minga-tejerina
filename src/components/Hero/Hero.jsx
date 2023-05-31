@@ -4,9 +4,12 @@ import InputCustom from '../Auth/InputCustom'
 import Button from '../Buttom'
 import RegisterButtom from '../Google/RegisterButtom'
 
+
 export default function Hero() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+
     return (
         <View className='bg-red-400 h-full w-full flex flex-col justify-center items-center'  >
             <ImageBackground className='w-full h-full' source={{ uri: 'https://github.com/MatiasTejerina07/mobile-minga-tejerina/blob/dev/assets/images/BackgroundHero.png?raw=true' }}>
