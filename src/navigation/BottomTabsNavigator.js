@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../pages/SignIn";
 import Register from "../pages/Register";
-import Manga from "../pages/Manga"
+import Manga from "../pages/Manga/Manga"
 import { useSelector } from "react-redux";
 const Tab = createBottomTabNavigator()
 
