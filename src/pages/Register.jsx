@@ -1,18 +1,54 @@
-
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, Alert} from 'react-native'
 import InputCustom from '../components/Auth/InputCustom'
 import { useState } from 'react'
 import Button from '../components/Buttom'
 import { KeyboardAvoidingView, Platform } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux';
+import actions from '../store/user/authActions';
+const { sign_up, clean_up } = actions;
+import { useEffect } from 'react'
+import { useNavigation } from '@react-navigation/native'
+
 
 
 export default function Register() {
+  const dispatch = useDispatch()
+  const { error, loading, success } = useSelector(store => store.user)
   const [name, setName] = useState('')
   const [lastname, setLastname] = useState('')
   const [photo, setPhoto] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const navigation = useNavigation()
 
+  function handleSubmit() {
+    let data = {
+      name: name,
+      last_name: lastname,
+      email: email,
+      password: password,
+      photo: photo
+    }
+    dispatch(sign_up({ data }))
+  }
+
+
+  useEffect(() => {
+    if (error?.userExist) {
+      Alert.alert('Already exists', 'Your user are already created, please sign in', [
+        { text: 'OK', onPress: () => navigation.navigate('SignIn') },
+      ]);
+
+    }
+    if (success) {
+      Alert.alert('User created', 'Your user was succesfully created, verify your email', [
+        { text: 'OK', onPress: () => navigation.navigate('Verify') },
+      ]);
+
+    }
+
+
+  }, [success, error])
 
   return (
     <KeyboardAvoidingView
@@ -32,7 +68,7 @@ export default function Register() {
           <InputCustom value={photo} handleValue={setPhoto} icon={'camera'} name={'Photo'} placeholder={'URL'} />
           <InputCustom value={email} handleValue={setEmail} icon={'email'} name={'Email'} />
           <InputCustom value={password} handleValue={setPassword} icon={'lock'} name={'Password'} />
-          <Button title='Sign Up' />
+          <Button onPress={handleSubmit} title='Sign Up' />
         </View>
       </View>
     </KeyboardAvoidingView>

@@ -2,11 +2,8 @@ import { View, Image, Text, Pressable } from "react-native"
 import { useState } from "react";
 import ToggleButtom from './ToggleButtom'
 export default function MangaDetails() {
-  const [isManga, setIsManga] = useState(true);
   const [showChapters, setShowChapters] = useState('')
-  const handleToggleSwitch = () => {
-    setIsManga(!isManga);
-  }
+  
   return (
     <View className='h-full w-full'>
       <View className='flex justify-center h-[50%] items-center w-full'>
