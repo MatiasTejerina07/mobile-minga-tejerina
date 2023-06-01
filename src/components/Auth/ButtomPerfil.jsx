@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, Image, View } from 'react-native';
+import { TouchableOpacity, Text, Image, View, ImageBackground, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
 export default function Button({ onPress }) {
@@ -9,12 +9,13 @@ export default function Button({ onPress }) {
             {user && <Text className='font-[600] text-[25px] text-center'>Perfil</Text>}
             <TouchableOpacity className='flex w-full justify-center items-center' onPress={onPress}>
                 {user ? (
-                    <View className='flex justify-center items-center bg-[#0e3e85] rounded-full w-40 h-40'>
-                        <Text className=' h-16 text-center font-[600] text-white text-[20px] pt-4'>{user?.name}</Text>
-                        <View className='flex-row'>
-                            <Text className='font-[600] text-white' >{user?.email}</Text>
-                        </View>
-                        <Image className='w-14 h-14 rounded-full mt-2' source={{ uri: user?.photo }} />
+                    <View className='flex items-center justify-center' style={{ width: 160, height: 160, borderRadius: 80, overflow: 'hidden' }}>
+                        <ImageBackground className=' w-40 h-40' source={{ uri: user?.photo }}>
+                            <Text style={styles.text} className=' h-16 text-center font-[600] text-white text-[22px] pt-4'>{user?.name}</Text>
+                            <View className='flex-row justify-center'>
+                                <Text style={styles.text} className='font-[600] text-[17px] text-center text-white' >{user?.email}</Text>
+                            </View>
+                        </ImageBackground>
                     </View>
                 ) : (
                     ''
@@ -23,3 +24,10 @@ export default function Button({ onPress }) {
         </>
     )
 }
+const styles = StyleSheet.create({
+    text: {
+        textShadowColor: 'rgba(0, 0, 0, 0.95)',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 2,
+    },
+})

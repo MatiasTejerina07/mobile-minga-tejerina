@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, ImageBackground, Image } from 'react-native'
+import { View, Text, ImageBackground, Image, Alert } from 'react-native'
 import { KeyboardAvoidingView, Platform } from 'react-native'
 import InputCustom from '../Auth/InputCustom'
 import Button from '../Buttom'
 import RegisterButtom from '../Google/RegisterButtom'
 import actions from '../../store/user/authActions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 const { sign_in } = actions
 export default function Hero() {
@@ -16,6 +16,8 @@ export default function Hero() {
     const [emailError, setEmailError] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigation()
+    const error = useSelector(store => store?.user.error)
+    console.log(error)
     const handleData = () => {
         console.log('hola')
         let data = {
@@ -29,10 +31,9 @@ export default function Hero() {
                 setPasswordError(passwordErrorMessage);
                 setEmailError(emailErrorMessage)
             })
-            if(!passwordError && !setEmailError){
-                navigate.navigate('Manga')
-            }
-
+        if (!passwordError && !setEmailError) {
+            navigate.navigate('Manga')
+        }
     }
     console.log(passwordError)
     return (

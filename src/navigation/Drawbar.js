@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux'
 import ButtomCustom from '../components/Auth/ButtomCustom'
 import Perfil from '../components/Auth/ButtomPerfil'
 import MangaDetails from '../pages/Manga/MangaDetails';
+import PerfilUser from '../pages/Perfil/Perfil';
+import Verify from '../components/Auth/Verify';
 
 
 
@@ -27,6 +29,8 @@ function DrawerNavigation() {
             <Drawer.Screen name="Register" component={Register} options={{ headerShown: false, drawerItemStyle: { display: 'none' } }} />
             {token === null ? null : <Drawer.Screen name="Chapters" component={Chapters} options={{ headerShown: false }} />}
             <Drawer.Screen name="MangaDetails" component={MangaDetails} options={{ headerShown: false, drawerItemStyle: { display: 'none' } }} />
+            <Drawer.Screen name="Perfil" component={PerfilUser} options={{ headerShown: false, drawerItemStyle: { display: 'none' } }} />
+            <Drawer.Screen name="Verify" component={Verify} options={{ headerShown: false, drawerItemStyle: { display: 'none' } }} />
         </Drawer.Navigator>
 
     )
@@ -37,15 +41,15 @@ const Homee = ({ navigation }) => {
     const token = useSelector(store => store?.user?.token)
     return (
         <DrawerContentScrollView style={styles.container}>
-            <Perfil/>
+            <Perfil  onPress={()=> navigation.navigate('Perfil')}/>
             <Text style={styles.title} >Menu</Text>
 
             {!token && <ButtomCustom title='SignIn' onPress={() => navigation.navigate('SignIn')} />}
             {token === null ? null : <ButtomCustom title='Home' onPress={() => navigation.navigate('Home')} />}
-            <ButtomCustom title='Register' onPress={() => navigation.navigate('Register')} />
-            {token === null ? null : <Drawer.Screen name="Manga" component={Manga} options={{ headerShown: false }} />}
-            {token === null ? null :<ButtomCustom title='Chapters' onPress={() => navigation.navigate('Chapters')} />}
-            {token  ? <ButtomCustom title='Logout' onPress={() => navigation.navigate()} />: null}
+            {!token && <ButtomCustom title='Register' onPress={() => navigation.navigate('Register')} />}
+            {token === null ? null : <Drawer.Screen title="Manga" component={Manga} options={{ headerShown: false }} />}
+            {token === null ? null : <ButtomCustom title='Chapters' onPress={() => navigation.navigate('Chapters')} />}
+            {token ? <ButtomCustom title='Logout' onPress={() => navigation.navigate()} /> : null}
         </DrawerContentScrollView>
     )
 }
